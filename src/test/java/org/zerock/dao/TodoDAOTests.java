@@ -46,4 +46,22 @@ public class TodoDAOTests {
 
         System.out.println(vo);
     }
+
+    @Test
+    public void testDeleteOne() throws Exception{
+        Long tno = 1L;
+        todoDAO.deleteOne(tno);
+    }
+
+    @Test
+    public void testUpdateOne() throws Exception{
+        TodoVO todoVO = TodoVO.builder()
+                .tno(2L)
+                .title("test update")
+                .dueDate(LocalDate.of(2021,12,31))
+                .finished(true)
+                .build();
+
+        todoDAO.updateOne(todoVO);
+    }
 }
