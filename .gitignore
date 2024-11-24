@@ -40,3 +40,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### password
+src/test/java/org/zerock/dao/ConnectTests.java
