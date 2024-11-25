@@ -22,17 +22,6 @@ public enum TodoService {
         modelMapper = MapperUtil.INSTANCE.get();
     }
 
-    //TodoDTO -> TodoVO
-    public void register(TodoDTO todoDTO) throws Exception{
-
-        TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
-
-        //System.out.println("todoVO: " + todoVO);
-        log.info(todoVO);
-
-        dao.insert(todoVO);
-    }
-
     public List<TodoDTO> listAll() throws Exception{
         List<TodoVO> voList = dao.selectAll();
 
@@ -45,6 +34,17 @@ public enum TodoService {
                 .collect(Collectors.toList());
 
         return dtoList;
+    }
+
+    //TodoDTO -> TodoVO
+    public void register(TodoDTO todoDTO) throws Exception{
+
+        TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
+
+        //System.out.println("todoVO: " + todoVO);
+        log.info(todoVO);
+
+        dao.insert(todoVO);
     }
 
     public TodoDTO get(Long tno) throws Exception{
