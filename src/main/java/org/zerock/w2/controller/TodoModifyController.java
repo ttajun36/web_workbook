@@ -35,18 +35,18 @@ public class TodoModifyController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         String finishedStr = req.getParameter("finished");
 
         TodoDTO todoDTO = TodoDTO.builder()
                 .tno(Long.parseLong(req.getParameter("tno")))
                 .title(req.getParameter("title"))
-                .dueDate(LocalDate.parse(req.getParameter("dueDate"), DATEFORMATTER))
-                .finished(finishedStr!=null && finishedStr.equals("true"))
+                .dueDate(LocalDate.parse(req.getParameter("dueDate"),DATEFORMATTER ))
+                .finished( finishedStr !=null && finishedStr.equals("on")  )
                 .build();
 
         log.info("/todo/modify POST...");
-        System.out.println(req.getParameter("finished"));
         log.info(todoDTO);
         try {
             todoService.modify(todoDTO);
@@ -54,5 +54,6 @@ public class TodoModifyController extends HttpServlet {
             e.printStackTrace();
         }
         resp.sendRedirect("/todo/list");
+
     }
 }
